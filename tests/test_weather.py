@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import *
 
 from src.weather.weather import Weather
+from src.weather.weather_data import WeatherData
 
 
 class WeatherTest(unittest.TestCase):
@@ -697,6 +698,11 @@ class WeatherTest(unittest.TestCase):
         self.weather.data.get_week_weather_by_city_id = MagicMock(side_effect=ValueError("Wrong value!"))
         with self.assertRaisesRegex(ValueError, "Wrong value!"):
             self.weather.week_humidity_forecast_by_city_id(-111)
+
+    @patch.object(WeatherData, 'get_week_weather_by_city_name')
+    def test_week_average_temperature_by_city_name_London_equals_6_19(self, mock_method):
+        mock_method.return_value = self.week_London_json
+        self.assertEqual(self.weather.week_average_temperature_by_city_name(self.city_name_London), 6.19)
 
     def tearDown(self):
         self.weather = None

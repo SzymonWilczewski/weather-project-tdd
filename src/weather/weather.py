@@ -130,3 +130,6 @@ class Weather:
             raise TypeError("Wrong type!")
         except ValueError:
             raise ValueError("Wrong value!")
+
+    def week_average_temperature_by_city_name(self, city_name):
+        pass
