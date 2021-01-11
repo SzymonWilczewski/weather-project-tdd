@@ -120,11 +120,4 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def week_humidity_forecast_by_city_id(self, city_id):
-        try:
-            weather = self.data.get_week_weather_by_city_id(city_id)
-            humidity = []
-            for day in weather["list"]:
-                humidity.append(day["humidity"])
-            return humidity
-        except TypeError:
-            raise TypeError("Wrong type!")
+        pass
