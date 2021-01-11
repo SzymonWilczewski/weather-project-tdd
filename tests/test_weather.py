@@ -715,6 +715,12 @@ class WeatherTest(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "Wrong type!"):
             self.weather.week_average_temperature_by_city_name({"a", "b", "c"})
 
+    @patch.object(WeatherData, 'get_week_weather_by_city_name')
+    def test_week_average_temperature_by_city_name_bad_value_exception_when_invalid_city_name_given(self, mock_method):
+        mock_method.side_effect = ValueError("Wrong value!")
+        with self.assertRaisesRegex(ValueError, "Wrong value!"):
+            self.weather.week_average_temperature_by_city_name("xyz")
+
     def tearDown(self):
         self.weather = None
 
