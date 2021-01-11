@@ -190,3 +190,6 @@ class Weather:
             raise TypeError("Wrong type!")
         except ValueError:
             raise ValueError("Wrong value!")
+
+    def week_average_humidity_by_city_id(self, city_id):
+        pass
