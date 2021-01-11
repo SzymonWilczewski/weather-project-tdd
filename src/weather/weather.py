@@ -60,4 +60,11 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def week_temperature_forecast_by_city_name(self, city_name):
-        raise TypeError("Wrong type!")
+        try:
+            weather = self.data.get_week_weather_by_city_name(city_name)
+            temperature = []
+            for day in weather["list"]:
+                temperature.append(round(day["temp"]["day"] - 273.15, 2))
+            return temperature
+        except TypeError:
+            raise TypeError("Wrong type!")
