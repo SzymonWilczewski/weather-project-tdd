@@ -15,4 +15,4 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def current_temperature_by_city_id(self, city_id):
-        pass
+        raise ValueError("Wrong value!")
