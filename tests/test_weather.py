@@ -9,6 +9,7 @@ class WeatherTest(unittest.TestCase):
         self.weather = Weather()
 
         self.city_name_London = "London"
+        self.city_name_Mountain_View = "Mountain View"
         self.current_London_json = {
             "coord": {
                 "lon": -0.13,
@@ -51,10 +52,55 @@ class WeatherTest(unittest.TestCase):
             "name": "London",
             "cod": 200
         }
+        self.current_Mountain_View_json = {
+            "coord": {"lon": -122.08, "lat": 37.39},
+            "weather": [
+                {
+                    "id": 800,
+                    "main": "Clear",
+                    "description": "clear sky",
+                    "icon": "01d"
+                }
+            ],
+            "base": "stations",
+            "main": {
+                "temp": 282.55,
+                "feels_like": 281.86,
+                "temp_min": 280.37,
+                "temp_max": 284.26,
+                "pressure": 1023,
+                "humidity": 100
+            },
+            "visibility": 16093,
+            "wind": {
+                "speed": 1.5,
+                "deg": 350
+            },
+            "clouds": {
+                "all": 1
+            },
+            "dt": 1560350645,
+            "sys": {
+                "type": 1,
+                "id": 5122,
+                "message": 0.0139,
+                "country": "US",
+                "sunrise": 1560343627,
+                "sunset": 1560396563
+            },
+            "timezone": -25200,
+            "id": 420006353,
+            "name": "Mountain View",
+            "cod": 200
+        }
 
     def test_current_temperature_by_city_name_London_almost_equal_7_17(self):
         self.weather.data.get_current_weather_by_city_name = Mock(return_value=self.current_London_json)
         self.assertAlmostEqual(self.weather.current_temperature_by_city_name(self.city_name_London), 7.17)
+
+    def test_current_temperature_by_city_name_Mountain_View_almost_equal_9_4(self):
+        self.weather.data.get_current_weather_by_city_name = Mock(return_value=self.current_Mountain_View_json)
+        self.assertAlmostEqual(self.weather.current_temperature_by_city_name(self.city_name_Mountain_View), 9.4)
 
     def tearDown(self):
         self.weather = None
