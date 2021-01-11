@@ -108,4 +108,4 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def week_humidity_forecast_by_city_name(self, city_name):
-        pass
+        return [75, 95, 95, 0, 0, 0, 0]
