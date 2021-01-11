@@ -792,6 +792,11 @@ class WeatherTest(unittest.TestCase):
         mock_method.return_value = self.week_London_json
         self.assertLessEqual(self.weather.week_average_humidity_by_city_name(self.city_name_London), 38)
 
+    @patch.object(WeatherData, 'get_week_weather_by_city_name')
+    def test_week_average_humidity_by_city_name_Mountain_View_less_or_equal_to_27(self, mock_method):
+        mock_method.return_value = self.week_Mountain_View_json
+        self.assertLessEqual(self.weather.week_average_humidity_by_city_name(self.city_name_Mountain_View), 27)
+
     def tearDown(self):
         self.weather = None
 

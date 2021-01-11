@@ -180,8 +180,4 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def week_average_humidity_by_city_name(self, city_name):
-        weather = self.data.get_week_weather_by_city_name(city_name)
-        humidity = []
-        for day in weather["list"]:
-            humidity.append(day["humidity"])
-        return int(round(sum(humidity) / len(humidity), 0))
+        pass
