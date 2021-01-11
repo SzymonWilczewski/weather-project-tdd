@@ -10,6 +10,7 @@ class WeatherTest(unittest.TestCase):
 
         self.city_name_London = "London"
         self.city_name_Mountain_View = "Mountain View"
+        self.city_id_London = 2643743
         self.current_London_json = {
             "coord": {
                 "lon": -0.13,
@@ -111,6 +112,10 @@ class WeatherTest(unittest.TestCase):
         self.weather.data.get_current_weather_by_city_name = Mock(side_effect=ValueError("Wrong value!"))
         with self.assertRaisesRegex(ValueError, "Wrong value!"):
             self.weather.current_temperature_by_city_name("xyz")
+
+    def test_current_temperature_by_city_id_London_almost_equal_7_17(self):
+        self.weather.data.get_current_weather_by_city_id = Mock(return_value=self.current_London_json)
+        self.assertAlmostEqual(self.weather.current_temperature_by_city_id(self.city_id_London), 7.17)
 
     def tearDown(self):
         self.weather = None
