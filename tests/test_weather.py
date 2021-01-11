@@ -11,6 +11,7 @@ class WeatherTest(unittest.TestCase):
         self.city_name_London = "London"
         self.city_name_Mountain_View = "Mountain View"
         self.city_id_London = 2643743
+        self.city_id_Mountain_View = 420006353
         self.current_London_json = {
             "coord": {
                 "lon": -0.13,
@@ -116,6 +117,10 @@ class WeatherTest(unittest.TestCase):
     def test_current_temperature_by_city_id_London_almost_equal_7_17(self):
         self.weather.data.get_current_weather_by_city_id = Mock(return_value=self.current_London_json)
         self.assertAlmostEqual(self.weather.current_temperature_by_city_id(self.city_id_London), 7.17)
+
+    def test_current_temperature_by_city_id_Mountain_View_almost_equal_9_4(self):
+        self.weather.data.get_current_weather_by_city_id = Mock(return_value=self.current_Mountain_View_json)
+        self.assertAlmostEqual(self.weather.current_temperature_by_city_id(self.city_id_Mountain_View), 9.4)
 
     def tearDown(self):
         self.weather = None
