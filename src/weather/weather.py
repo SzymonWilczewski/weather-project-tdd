@@ -144,8 +144,4 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def week_average_temperature_by_city_id(self, city_id):
-        weather = self.data.get_week_weather_by_city_id(city_id)
-        temperature = []
-        for day in weather["list"]:
-            temperature.append(round(day["temp"]["day"] - 273.15, 2))
-        return round(sum(temperature) / len(temperature), 2)
+        pass
