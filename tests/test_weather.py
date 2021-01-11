@@ -158,6 +158,11 @@ class WeatherTest(unittest.TestCase):
         self.weather.data.get_current_weather_by_city_id = Mock(return_value=self.current_Mountain_View_json)
         self.assertEqual(self.weather.current_pressure_by_city_id(self.city_id_Mountain_View), 1023)
 
+    def test_current_pressure_by_city_id_bad_type_exception_when_float_given(self):
+        self.weather.data.get_current_weather_by_city_id = Mock(side_effect=TypeError("Wrong type!"))
+        with self.assertRaisesRegex(TypeError, "Wrong type!"):
+            self.weather.current_pressure_by_city_id(1.23)
+
     def tearDown(self):
         self.weather = None
 
