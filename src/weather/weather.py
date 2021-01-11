@@ -192,4 +192,11 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def week_average_humidity_by_city_id(self, city_id):
-        raise TypeError("Wrong type!")
+        try:
+            weather = self.data.get_week_weather_by_city_id(city_id)
+            humidity = []
+            for day in weather["list"]:
+                humidity.append(day["humidity"])
+            return int(round(sum(humidity) / len(humidity), 0))
+        except TypeError:
+            raise TypeError("Wrong type!")
