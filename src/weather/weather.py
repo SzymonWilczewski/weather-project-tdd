@@ -168,11 +168,4 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def week_average_pressure_by_city_id(self, city_id):
-        try:
-            weather = self.data.get_week_weather_by_city_id(city_id)
-            pressure = []
-            for day in weather["list"]:
-                pressure.append(day["pressure"])
-            return int(round(sum(pressure) / len(pressure), 0))
-        except TypeError:
-            raise TypeError("Wrong type!")
+        pass
