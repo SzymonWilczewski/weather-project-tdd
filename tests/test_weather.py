@@ -163,11 +163,20 @@ class WeatherTest(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "Wrong type!"):
             self.weather.current_pressure_by_city_id(1.23)
 
+    def test_current_pressure_by_city_id_bad_value_exception_when_invalid_city_id_given(self):
+        self.weather.data.get_current_weather_by_city_id = Mock(side_effect=ValueError("Wrong value!"))
+        with self.assertRaisesRegex(ValueError, "Wrong value!"):
+            self.weather.current_pressure_by_city_id(-111)
+
     def tearDown(self):
         self.weather = None
 
         self.city_name_London = None
+        self.city_name_Mountain_View = None
+        self.city_id_London = None
+        self.city_id_Mountain_View = None
         self.current_London_json = None
+        self.current_Mountain_View_json = None
 
 
 if __name__ == '__main__':
