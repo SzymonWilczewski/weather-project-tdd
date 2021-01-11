@@ -15,4 +15,5 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def current_temperature_by_city_id(self, city_id):
-        return 9.4
+        weather = self.data.get_current_weather_by_city_id(city_id)
+        return round(weather["main"]["temp"] - 273.15, 2)
