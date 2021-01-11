@@ -84,11 +84,4 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def week_pressure_forecast_by_city_name(self, city_name):
-        try:
-            weather = self.data.get_week_weather_by_city_name(city_name)
-            pressure = []
-            for day in weather["list"]:
-                pressure.append(day["pressure"])
-            return pressure
-        except TypeError:
-            raise TypeError("Wrong type!")
+        pass

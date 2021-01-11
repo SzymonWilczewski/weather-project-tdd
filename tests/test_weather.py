@@ -635,6 +635,11 @@ class WeatherTest(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "Wrong type!"):
             self.weather.week_pressure_forecast_by_city_name(("a", "b", "c"))
 
+    def test_week_pressure_forecast_by_city_name_bad_value_exception_when_invalid_city_name_given(self):
+        self.weather.data.get_week_weather_by_city_name = MagicMock(side_effect=ValueError("Wrong value!"))
+        with self.assertRaisesRegex(ValueError, "Wrong value!"):
+            self.weather.week_pressure_forecast_by_city_name("xyz")
+
     def tearDown(self):
         self.weather = None
 
