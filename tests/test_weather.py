@@ -630,6 +630,11 @@ class WeatherTest(unittest.TestCase):
         self.weather.data.get_week_weather_by_city_name = MagicMock(return_value=self.week_Mountain_View_json)
         self.assertIsInstance(self.weather.week_pressure_forecast_by_city_name(self.city_name_Mountain_View), list)
 
+    def test_week_pressure_forecast_by_city_name_bad_type_exception_when_tuple_given(self):
+        self.weather.data.get_week_weather_by_city_name = MagicMock(side_effect=TypeError("Wrong type!"))
+        with self.assertRaisesRegex(TypeError, "Wrong type!"):
+            self.weather.week_pressure_forecast_by_city_name(("a", "b", "c"))
+
     def tearDown(self):
         self.weather = None
 
