@@ -753,6 +753,12 @@ class WeatherTest(unittest.TestCase):
         mock_method.return_value = self.week_Mountain_View_json
         self.assertGreaterEqual(self.weather.week_average_pressure_by_city_name(self.city_name_Mountain_View), 1006)
 
+    @patch.object(WeatherData, 'get_week_weather_by_city_name')
+    def test_week_average_pressure_by_city_name_bad_type_exception_when_bytes_given(self, mock_method):
+        mock_method.side_effect = TypeError("Wrong type!")
+        with self.assertRaisesRegex(TypeError, "Wrong type!"):
+            self.weather.week_average_pressure_by_city_name(b"abc")
+
     def tearDown(self):
         self.weather = None
 
