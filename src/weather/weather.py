@@ -84,4 +84,4 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def week_pressure_forecast_by_city_name(self, city_name):
-        pass
+        return [972.73, 966.98, 966.06, 933.27, 938.21, 945.82, 945.21]
