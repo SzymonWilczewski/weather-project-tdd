@@ -96,4 +96,8 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def week_pressure_forecast_by_city_id(self, city_id):
-        return [972.73, 966.98, 966.06, 933.27, 938.21, 945.82, 945.21]
+        weather = self.data.get_week_weather_by_city_id(city_id)
+        pressure = []
+        for day in weather["list"]:
+            pressure.append(day["pressure"])
+        return pressure
