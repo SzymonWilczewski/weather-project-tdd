@@ -617,6 +617,11 @@ class WeatherTest(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "Wrong type!"):
             self.weather.week_temperature_forecast_by_city_id(1j)
 
+    def test_week_temperature_forecast_by_city_id_bad_value_exception_when_invalid_city_id_given(self):
+        self.weather.data.get_week_weather_by_city_id = MagicMock(side_effect=ValueError("Wrong value!"))
+        with self.assertRaisesRegex(ValueError, "Wrong value!"):
+            self.weather.week_temperature_forecast_by_city_id(-111)
+
     def tearDown(self):
         self.weather = None
 
