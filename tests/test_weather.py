@@ -743,6 +743,11 @@ class WeatherTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Wrong value!"):
             self.weather.week_average_temperature_by_city_id(-111)
 
+    @patch.object(WeatherData, 'get_week_weather_by_city_name')
+    def test_week_average_pressure_by_city_name_London_greater_or_equal_to_953(self, mock_method):
+        mock_method.return_value = self.week_London_json
+        self.assertGreaterEqual(self.weather.week_average_pressure_by_city_name(self.city_name_London), 953)
+
     def tearDown(self):
         self.weather = None
 
