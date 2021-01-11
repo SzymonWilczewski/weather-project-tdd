@@ -668,6 +668,11 @@ class WeatherTest(unittest.TestCase):
         self.assertListEqual(self.weather.week_humidity_forecast_by_city_name(self.city_name_Mountain_View),
                              [52, 50, 84, 0, 0, 0, 0])
 
+    def test_week_humidity_forecast_by_city_name_bad_type_exception_when_range_given(self):
+        self.weather.data.get_week_weather_by_city_name = MagicMock(side_effect=TypeError("Wrong type!"))
+        with self.assertRaisesRegex(TypeError, "Wrong type!"):
+            self.weather.week_humidity_forecast_by_city_name(range(1))
+
     def tearDown(self):
         self.weather = None
 
