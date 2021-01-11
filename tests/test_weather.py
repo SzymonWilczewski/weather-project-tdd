@@ -683,6 +683,11 @@ class WeatherTest(unittest.TestCase):
         self.assertListEqual(self.weather.week_humidity_forecast_by_city_id(self.city_id_London),
                              [75, 95, 95, 0, 0, 0, 0])
 
+    def test_week_humidity_forecast_by_city_id_Mountain_View_list_equal_to_humidities(self):
+        self.weather.data.get_week_weather_by_city_id = MagicMock(return_value=self.week_Mountain_View_json)
+        self.assertListEqual(self.weather.week_humidity_forecast_by_city_id(self.city_id_Mountain_View),
+                             [52, 50, 84, 0, 0, 0, 0])
+
     def tearDown(self):
         self.weather = None
 
