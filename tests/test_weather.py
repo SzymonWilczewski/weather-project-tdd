@@ -181,6 +181,11 @@ class WeatherTest(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "Wrong type!"):
             self.weather.current_humidity_by_city_name(["a", "b", "c"])
 
+    def test_current_humidity_by_city_name_bad_value_exception_when_invalid_city_name_given(self):
+        self.weather.data.get_current_weather_by_city_name = Mock(side_effect=ValueError("Wrong value!"))
+        with self.assertRaisesRegex(ValueError, "Wrong value!"):
+            self.weather.current_humidity_by_city_name("xyz")
+
     def tearDown(self):
         self.weather = None
 

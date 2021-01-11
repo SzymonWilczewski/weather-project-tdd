@@ -42,8 +42,4 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def current_humidity_by_city_name(self, city_name):
-        try:
-            weather = self.data.get_current_weather_by_city_name(city_name)
-            return weather["main"]["humidity"]
-        except TypeError:
-            raise TypeError("Wrong type!")
+        pass
