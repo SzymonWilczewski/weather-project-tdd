@@ -608,6 +608,10 @@ class WeatherTest(unittest.TestCase):
         self.weather.data.get_week_weather_by_city_id = MagicMock(return_value=self.week_London_json)
         self.assertIn(13.52, self.weather.week_temperature_forecast_by_city_id(self.city_id_London))
 
+    def test_week_temperature_forecast_by_city_id_Mountain_View_10_84_in_temperatures(self):
+        self.weather.data.get_week_weather_by_city_id = MagicMock(return_value=self.week_Mountain_View_json)
+        self.assertIn(10.84, self.weather.week_temperature_forecast_by_city_id(self.city_id_Mountain_View))
+
     def tearDown(self):
         self.weather = None
 
