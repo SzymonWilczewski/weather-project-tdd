@@ -176,6 +176,11 @@ class WeatherTest(unittest.TestCase):
         self.weather.data.get_current_weather_by_city_name = Mock(return_value=self.current_Mountain_View_json)
         self.assertGreater(self.weather.current_humidity_by_city_name(self.city_name_Mountain_View), 99)
 
+    def test_current_humidity_by_city_name_bad_type_exception_when_list_given(self):
+        self.weather.data.get_current_weather_by_city_name = Mock(side_effect=TypeError("Wrong type!"))
+        with self.assertRaisesRegex(TypeError, "Wrong type!"):
+            self.weather.current_humidity_by_city_name(["a", "b", "c"])
+
     def tearDown(self):
         self.weather = None
 
