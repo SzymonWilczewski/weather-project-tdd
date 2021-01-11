@@ -825,6 +825,12 @@ class WeatherTest(unittest.TestCase):
         with self.assertRaisesRegex(TypeError, "Wrong type!"):
             self.weather.week_average_humidity_by_city_id({"a": 1, "b": 2, "c": 3})
 
+    @patch.object(WeatherData, 'get_week_weather_by_city_id')
+    def test_week_average_humidity_by_city_id_bad_value_exception_when_invalid_city_id_given(self, mock_method):
+        mock_method.side_effect = ValueError("Wrong value!")
+        with self.assertRaisesRegex(ValueError, "Wrong value!"):
+            self.weather.week_average_humidity_by_city_id(-111)
+
     def tearDown(self):
         self.weather = None
 
