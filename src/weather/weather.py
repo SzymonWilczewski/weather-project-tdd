@@ -24,4 +24,4 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def current_pressure_by_city_name(self, city_name):
-        pass
+        raise TypeError("Wrong type!")
