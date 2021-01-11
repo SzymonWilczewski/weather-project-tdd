@@ -190,6 +190,10 @@ class WeatherTest(unittest.TestCase):
         self.weather.data.get_current_weather_by_city_id = Mock(return_value=self.current_London_json)
         self.assertLess(self.weather.current_humidity_by_city_id(self.city_id_London), 82)
 
+    def test_current_humidity_by_city_id_Mountain_View_less_than_101(self):
+        self.weather.data.get_current_weather_by_city_id = Mock(return_value=self.current_Mountain_View_json)
+        self.assertLess(self.weather.current_humidity_by_city_id(self.city_id_Mountain_View), 101)
+
     def tearDown(self):
         self.weather = None
 
