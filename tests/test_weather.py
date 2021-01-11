@@ -748,6 +748,11 @@ class WeatherTest(unittest.TestCase):
         mock_method.return_value = self.week_London_json
         self.assertGreaterEqual(self.weather.week_average_pressure_by_city_name(self.city_name_London), 953)
 
+    @patch.object(WeatherData, 'get_week_weather_by_city_name')
+    def test_week_average_pressure_by_city_name_Mountain_View_greater_or_equal_to_1006(self, mock_method):
+        mock_method.return_value = self.week_Mountain_View_json
+        self.assertGreaterEqual(self.weather.week_average_pressure_by_city_name(self.city_name_Mountain_View), 1006)
+
     def tearDown(self):
         self.weather = None
 
