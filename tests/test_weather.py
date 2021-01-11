@@ -186,6 +186,10 @@ class WeatherTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Wrong value!"):
             self.weather.current_humidity_by_city_name("xyz")
 
+    def test_current_humidity_by_city_id_London_less_than_82(self):
+        self.weather.data.get_current_weather_by_city_id = Mock(return_value=self.current_London_json)
+        self.assertLess(self.weather.current_humidity_by_city_id(self.city_id_London), 82)
+
     def tearDown(self):
         self.weather = None
 
