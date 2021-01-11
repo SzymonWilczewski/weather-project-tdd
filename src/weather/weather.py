@@ -24,5 +24,4 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def current_pressure_by_city_name(self, city_name):
-        weather = self.data.get_current_weather_by_city_name(city_name)
-        return weather["main"]["pressure"]
+        pass

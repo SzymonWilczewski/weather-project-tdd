@@ -136,6 +136,10 @@ class WeatherTest(unittest.TestCase):
         self.weather.data.get_current_weather_by_city_name = Mock(return_value=self.current_London_json)
         self.assertEqual(self.weather.current_pressure_by_city_name(self.city_name_London), 1012)
 
+    def test_current_pressure_by_city_name_Mountain_View_equals_1023(self):
+        self.weather.data.get_current_weather_by_city_name = Mock(return_value=self.current_Mountain_View_json)
+        self.assertEqual(self.weather.current_pressure_by_city_name(self.city_name_Mountain_View), 1023)
+
     def tearDown(self):
         self.weather = None
 
