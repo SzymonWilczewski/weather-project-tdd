@@ -658,6 +658,11 @@ class WeatherTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Wrong value!"):
             self.weather.week_pressure_forecast_by_city_id(-111)
 
+    def test_week_humidity_forecast_by_city_name_London_list_equal_to_humidities(self):
+        self.weather.data.get_week_weather_by_city_name = MagicMock(return_value=self.week_London_json)
+        self.assertListEqual(self.weather.week_humidity_forecast_by_city_name(self.city_name_London),
+                             [75, 95, 95, 0, 0, 0, 0])
+
     def tearDown(self):
         self.weather = None
 
