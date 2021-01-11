@@ -72,4 +72,4 @@ class Weather:
             raise ValueError("Wrong value!")
 
     def week_temperature_forecast_by_city_id(self, city_id):
-        pass
+        return [10.84, 9.53, 7.73, 10.65, 11.21, 12.43, 13.9]
